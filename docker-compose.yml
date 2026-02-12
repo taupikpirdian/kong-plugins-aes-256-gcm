@@ -1,0 +1,21 @@
+services:
+  kong:
+    image: kong-custom:latest
+    container_name: kong-dbless
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
+      KONG_PLUGINS: bundled,request-encrypt,response-aes-encrypt
+      KONG_LUA_PACKAGE_PATH: "/opt/kong/plugins/?.lua;/opt/kong/plugins/?/init.lua;;"
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+    volumes:
+      - ./kong.yml:/usr/local/kong/declarative/kong.yml
+      - ./plugins:/opt/kong/plugins
+    ports:
+      - "3002:8000"  # client akses via 3002
+      - "8001:8001"
+    restart: unless-stopped
