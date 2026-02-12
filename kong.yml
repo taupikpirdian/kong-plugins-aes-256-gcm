@@ -11,17 +11,17 @@ services:
         strip_path: true
 
     plugins:
-      # - name: request-encrypt
-      #   config:
-      #     secret: "7ea09a7ad2ca5d1135ce3f1095bf623a1ead28378fa682cd9a3945a2e583476e"
-      #     algorithm: rc4
-      #     request_enabled: true
-      #     response_enabled: true
-      #     fail_encrypt_status: 494
-
-      - name: response-aes-encrypt
+      - name: request-encrypt
         config:
-          secret_key: "7ea09a7ad2ca5d1135ce3f1095bf623a1ead28378fa682cd9a3945a2e583476e"
-          additional_headers: true
-          fail_encrypt_status: 500
-          fail_encrypt_message: "Response encryption failed"
+          secret: "7ea09a7ad2ca5d1135ce3f1095bf623a1ead28378fa682cd9a3945a2e583476e"
+          algorithm: rc4
+          request_enabled: true
+          response_enabled: true
+          fail_encrypt_status: 494
+
+      # - name: response-aes-encrypt
+      #   config:
+      #     secret_key: "7ea09a7ad2ca5d1135ce3f1095bf623a1ead28378fa682cd9a3945a2e583476e"
+      #     additional_headers: true
+      #     fail_encrypt_status: 500
+      #     fail_encrypt_message: "Response encryption failed"
