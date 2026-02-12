@@ -9,7 +9,6 @@ RUN apt-get update && \
 
 # Copy custom plugins
 RUN mkdir -p /usr/local/kong/plugins/kong/plugins
-COPY plugins/request-encrypt /usr/local/kong/plugins/kong/plugins/request-encrypt
 COPY plugins/response-aes-encrypt /usr/local/kong/plugins/kong/plugins/response-aes-encrypt
 
 # Fix ownership

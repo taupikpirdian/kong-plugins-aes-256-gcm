@@ -5,7 +5,7 @@ services:
     environment:
       KONG_DATABASE: "off"
       KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
-      KONG_PLUGINS: bundled,request-encrypt,response-aes-encrypt
+      KONG_PLUGINS: bundled,response-aes-encrypt
       KONG_LUA_PACKAGE_PATH: ";/usr/local/kong/plugins/?.lua;/usr/local/kong/plugins/?/init.lua"
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
