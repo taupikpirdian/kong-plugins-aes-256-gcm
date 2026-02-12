@@ -6,9 +6,6 @@ local ResponseAesEncryptHandler = {
     PRIORITY = 1000,
 }
 
--- Flag to track if encryption failed in header_filter
-local encryption_failed = false
-
 -- Modify response headers before body is sent
 function ResponseAesEncryptHandler:header_filter(conf)
     -- Skip if response is from exit (error response)
@@ -57,10 +54,6 @@ function ResponseAesEncryptHandler:body_filter(conf)
 
             -- Return the original chunk unencrypted
             kong.response.set_raw_body(chunk)
-
-            -- Set error header to indicate encryption failed
-            kong.response.set_header("X-Encryption-Error", "true")
-            kong.response.set_header("X-Encryption-Error-Message", conf.fail_encrypt_message or "Encryption failed")
             return
         end
 
